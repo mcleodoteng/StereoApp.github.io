@@ -11,7 +11,7 @@ import CheckOut from "./components/CheckOut";
 import Mark1 from "./components/Mark1";
 import HeadPhones from "./components/HeadPhones";
 import Homepage from "./components/Homepage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Routes, Route } from "react-router-dom";
 import Speakers from "./components/Speakers";
 
 function App() {
