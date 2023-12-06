@@ -304,4 +304,3 @@ const Mark2 = () => {
 };
 
 export default Mark2;
-Mark2.PropTypes = {};

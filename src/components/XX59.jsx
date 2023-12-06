@@ -17,9 +17,8 @@ import AllProduct from "./AllProduct";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CartMenu from "./CartMenu";
-import PropTypes from "prop-types";
 
-const XX59 = ({ addToCart }) => {
+const XX59 = () => {
   const navigate = useNavigate();
   const [counter, setCount] = useState(1);
   const increaseCounter = () => setCount(counter + 1);
@@ -308,7 +307,3 @@ const XX59 = ({ addToCart }) => {
 };
 
 export default XX59;
-
-XX59.propTypes = {
-  addToCart: PropTypes.func.isRequired,
-};
