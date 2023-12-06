@@ -27,16 +27,6 @@ const XX59 = () => {
     decreaseCounter = () => setCount(1);
   }
 
-  const handleAddToCart = () => {
-    const newItem = {
-      productType: "XX59",
-      price: 2999,
-      productImgSrc: Image1,
-      quantity: counter,
-    };
-    addToCart(newItem);
-  };
-
   return (
     <>
       <div className="overflow-hidden">
@@ -109,10 +99,7 @@ const XX59 = () => {
                     +
                   </button>
                 </div>
-                <button
-                  onClick={handleAddToCart}
-                  className="text-white text-lg bg-[#D87D4A] mt-8 w-48 h-16 tracking-[2px]"
-                >
+                <button className="text-white text-lg bg-[#D87D4A] mt-8 w-48 h-16 tracking-[2px]">
                   ADD TO CART
                 </button>
               </div>
