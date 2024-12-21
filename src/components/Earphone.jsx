@@ -7,9 +7,26 @@ import Image4 from "../resources/assets/product-yx1-earphones/tablet/h2.jpg";
 import Image2 from "../resources/assets/product-yx1-earphones/desktop/h1.jpg";
 import { useNavigate } from "react-router-dom";
 import CartMenu from "./CartMenu";
+import { useEffect, useState } from "react";
 
 const Earphone = () => {
   const navigate = useNavigate();
+
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (storedCartItems) {
+      setCartItems(storedCartItems);
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
+
   return (
     <>
       <div className="overflow-hidden">
@@ -23,7 +40,7 @@ const Earphone = () => {
           >
             audiophile
           </a>
-          <CartMenu />
+          <CartMenu cartItems={cartItems} setCartItems={setCartItems} />
         </div>
         <hr />
         <div className="bg-black h-32 w-screen -ml-8 mt-[64px] fixed xl:left-8 lg:left-8 md:left-8">

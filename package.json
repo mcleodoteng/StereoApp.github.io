@@ -16,6 +16,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.8",
+    "@mui/styles": "^6.2.1",
     "@syncfusion/ej2-react-grids": "^22.2.12",
     "@syncfusion/ej2-react-navigations": "^22.2.11",
     "prop-types": "^15.8.1",

@@ -15,7 +15,7 @@ import Footer from "./Footer";
 import Body3 from "./Body3";
 import AllProduct from "./AllProduct";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartMenu from "./CartMenu";
 
 const XX59 = () => {
@@ -26,6 +26,36 @@ const XX59 = () => {
   if (counter <= 0) {
     decreaseCounter = () => setCount(1);
   }
+
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (storedCartItems) {
+      setCartItems(storedCartItems);
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
+
+  const handleAddToCart = () => {
+    // Product details to be added to the cart
+    const product = {
+      id: Date.now(), // Unique id for each product
+      name: "XX59 HEADPHONES",
+      price: 899,
+      quantity: counter, // The quantity based on the counter
+      image: Image12, // Image URL
+    };
+
+    // Add the new product to the cart
+    setCartItems((prevItems) => [...prevItems, product]);
+    alert("Product added to cart");
+  };
 
   return (
     <>
@@ -40,7 +70,7 @@ const XX59 = () => {
           >
             audiophile
           </a>
-          <CartMenu />
+          <CartMenu cartItems={cartItems} setCartItems={setCartItems} />
         </div>
         <div className="bg-white h-12 w-screen mt-20 -ml-8 fixed xl:left-8 lg:left-8 md:left-8">
           <button
@@ -99,7 +129,10 @@ const XX59 = () => {
                     +
                   </button>
                 </div>
-                <button className="text-white text-lg bg-[#D87D4A] mt-8 w-48 h-16 tracking-[2px]">
+                <button
+                  onClick={handleAddToCart}
+                  className="text-white text-lg bg-[#D87D4A] mt-8 w-48 h-16 tracking-[2px]"
+                >
                   ADD TO CART
                 </button>
               </div>

@@ -29,7 +29,7 @@ export default function App() {
       </div>
       <div className="group relative">
         <Menu
-          className="mt-2 text-center bg-transparent lg:flex md:-mt-[800px] lg:-mt-[320px] lg:w-[60%] xl:-mt-[370px] xl:w-[60%]"
+          className="mt-2 text-center bg-transparent lg:flex md:-mt-[710px] lg:-mt-[300px] lg:w-[60%] xl:-mt-[600px] xl:w-[60%]"
           id="basic-menu"
           selectedElement={selectedElement}
           open={open}

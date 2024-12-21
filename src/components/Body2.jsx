@@ -26,13 +26,13 @@ const Body2 = () => {
             className="left-0 rounded-xl md:w-full"
           />
         </picture>
-        <div className="mx-auto lg:text-left lg:ml-20">
+        <div className="mx-auto lg:text-left lg:ml-32 lg:-mt-32">
           <h1
             className="text-white font-medium text-xl tracking-[3px] -mt-[163px]
                 sm:text-3xl sm:-mt-[250px]
                 md:text-4xl md:-mt-[420px]
                 lg:text-3xl lg:-mt-[270px] lg:ml-72
-                xl:text-3xl xl:-mt-[295px] xl:ml-80"
+                xl:text-3xl xl:-mt-[370px] xl:ml-80"
           >
             ZX9
           </h1>
@@ -66,6 +66,7 @@ const Body2 = () => {
           </button>
         </div>
 
+        <br />
         <br />
         <br />
       </div>
@@ -110,8 +111,8 @@ const Body2 = () => {
               className="left-0 mt-12 rounded-xl"
             />
           </picture>
-          <div className="mt-5 bg-[#eaeaea] rounded-lg p-8 md:mt-12 md:rounded-r-lg md:text-left lg:w-[580px]  xl:h-[300px]">
-            <h1 className="text-black font-medium text-3xl tracking-[2px] lg:mt-1">
+          <div className="mt-5 bg-[#eaeaea] rounded-lg p-8 md:mt-12 md:rounded-r-lg md:text-left lg:w-[640px]  xl:h-[350px]">
+            <h1 className="text-black font-medium text-3xl tracking-[2px] lg:mt-20">
               YX1 EARPHONES
             </h1>
             <button

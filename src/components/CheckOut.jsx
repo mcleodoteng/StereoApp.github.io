@@ -5,9 +5,24 @@ import Image2 from "../resources/assets/cart/h2.jpg";
 import Image3 from "../resources/assets/cart/h3.jpg";
 import { useNavigate } from "react-router-dom";
 import CartMenu from "./CartMenu";
+import { useEffect, useState } from "react";
 
 const CheckOut = () => {
   const navigate = useNavigate();
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (storedCartItems) {
+      setCartItems(storedCartItems);
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
   return (
     <div>
       <div className="bg-black flex justify-between w-screen p-1 px-5 h-20 items-center fixed top-0 left-0">
@@ -20,7 +35,7 @@ const CheckOut = () => {
         >
           audiophile
         </a>
-        <CartMenu />
+        <CartMenu cartItems={cartItems} setCartItems={setCartItems} />
       </div>
       <div className="bg-white h-12 w-screen -mt-20  fixed xl:left-8 lg:left-8">
         <button
@@ -173,54 +188,34 @@ const CheckOut = () => {
             <h1 className="mt-2 text-2xl font-medium tracking-[2px]">
               SUMMARY
             </h1>
-            <div className="mt-8 flex justify-between">
-              <div className="flex h-20 gap-3">
-                <img
-                  src={Image1}
-                  alt="my-selfimage"
-                  className="left-0 rounded-lg "
-                />
-                <div className="my-auto font-medium text-lg tracking-[1px]">
-                  <h1>XX99 MK II</h1>
-                  <h1 className="text-gray-500">$ 2,999</h1>
+            {cartItems.map((item) => (
+              <div className="mt-8 flex justify-between" key={item.id}>
+                <div className="flex h-20 gap-3">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="left-0 rounded-lg "
+                  />
+                  <div className="my-auto font-medium text-lg tracking-[1px]">
+                    <h1>{item.name}</h1>
+                    <h1 className="text-gray-500">${item.price}</h1>
+                  </div>
                 </div>
+                <h1 className="my-auto font-medium text-lg text-gray-500">
+                  {item.quantity}
+                </h1>
               </div>
-
-              <h1 className="my-auto font-medium text-lg text-gray-500">X1</h1>
-            </div>
-            <div className="mt-8 flex justify-between">
-              <div className="flex h-20 gap-3">
-                <img
-                  src={Image2}
-                  alt="my-selfimage"
-                  className="left-0 rounded-lg "
-                />
-                <div className="my-auto font-medium text-lg tracking-[1px]">
-                  <h1>XX59</h1>
-                  <h1 className="text-gray-500">$ 899</h1>
-                </div>
-              </div>
-
-              <h1 className="my-auto font-medium text-lg text-gray-500">X2</h1>
-            </div>
-            <div className="mt-8 flex justify-between">
-              <div className="flex h-20 gap-3">
-                <img
-                  src={Image3}
-                  alt="my-selfimage"
-                  className="left-0 rounded-lg "
-                />
-                <div className="my-auto font-medium text-lg tracking-[1px]">
-                  <h1>YX1</h1>
-                  <h1 className="text-gray-500">$ 599</h1>
-                </div>
-              </div>
-
-              <h1 className="my-auto font-medium text-lg text-gray-500">X1</h1>
-            </div>
+            ))}
+            {/* Add your total calculation logic here */}
             <div className="mt-10 flex justify-between ml-1 tracking-[1px] text-xl">
               <h1 className="font-light text-gray-500">TOTAL</h1>
-              <h1 className="font-medium ">$ 5,396</h1>
+              <h1 className="font-medium ">
+                $
+                {cartItems.reduce(
+                  (total, item) => total + item.price * item.quantity,
+                  0
+                )}
+              </h1>
             </div>
             <div className="mt-4 flex justify-between ml-1 tracking-[1px] text-xl">
               <h1 className="font-light text-gray-500">SHIPPING</h1>
@@ -232,7 +227,14 @@ const CheckOut = () => {
             </div>
             <div className="mt-6 flex justify-between ml-1 tracking-[1px] text-xl">
               <h1 className="font-light text-gray-500">GRAND TOTAL</h1>
-              <h1 className="font-medium text-[#D87D4A]">$ 5,446</h1>
+              <h1 className="font-medium text-[#D87D4A]">
+                ${" "}
+                {cartItems.reduce(
+                  (total, item) =>
+                    1075 + 50 + (total + item.price * item.quantity),
+                  0
+                )}
+              </h1>
             </div>
           </div>
 
